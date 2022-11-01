@@ -1,6 +1,7 @@
 #include <stdlib.h>
 
 #include <fstream>
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -31,7 +32,7 @@ struct Image {
     Image(int width, int height, Color default_color) {
         w = width;
         h = height;
-        colors.resize(w, vector<Color>(height, default_color));
+        colors.resize(h, vector<Color>(w, default_color));
     }
     void addSquare(int sx, int sy, int ex, int ey, Color c) {
         for (size_t x = sx; x < ex; x++) {
@@ -58,23 +59,25 @@ struct Image {
 int main() {
     srand(time(0));
 
-    int width = 255, height = 255;
-    Color default_color = Color(255, 255, 255);
+    int w = 297, h = 421;
 
     for (int i = 0; i < 10; i++) {
-        Image image = Image(width, height, default_color);
+        Color dc = Color(255, 255, 255);
+        // Color dc = Color(rand() % 255, rand() % 255, rand() % 255);
+        Image image = Image(w, h, dc);
         for (int j = 0; j < 10; j++) {
         gen_x:
-            int sx = rand() % width;
-            int ex = rand() % width;
+            int sx = rand() % h;
+            int ex = rand() % h;
             if (sx >= ex) goto gen_x;
         gen_y:
-            int sy = rand() % height;
-            int ey = rand() % height;
+            int sy = rand() % w;
+            int ey = rand() % w;
             if (sy >= ey) goto gen_y;
-            Color c = Color(rand() % 100, rand() % 100, rand() % 100);
+            Color c = Color(rand() % 90, rand() % 90, rand() % 90);
             image.addSquare(sx, sy, ex, ey, c);
         }
-        image.out("out/" + to_string(i) + ".ppm");
+        // image.out("out/" + to_string(i) + ".ppm");
+        image.out("out/" + to_string(rand() % 1000000) + ".ppm");
     }
 }

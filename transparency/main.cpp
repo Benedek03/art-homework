@@ -66,14 +66,12 @@ int main() {
         // Color dc = Color(rand() % 255, rand() % 255, rand() % 255);
         Image image = Image(w, h, dc);
         for (int j = 0; j < 10; j++) {
-        gen_x:
             int sx = rand() % h;
             int ex = rand() % h;
-            if (sx >= ex) goto gen_x;
-        gen_y:
+            if (sx >= ex) swap(sx, ex);
             int sy = rand() % w;
             int ey = rand() % w;
-            if (sy >= ey) goto gen_y;
+            if (sy >= ey) swap(sy, ey);
             Color c = Color(rand() % 90, rand() % 90, rand() % 90);
             image.addSquare(sx, sy, ex, ey, c);
         }

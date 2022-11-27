@@ -1,8 +1,4 @@
-this is the code (and some examples) for my art homework.
-
-you can get some very different images by just changing a few variables.
-
-## examples
+# examples
 
 ![examples/107882.png](examples/107882.png)
 ![examples/278434.png](examples/278434.png)
